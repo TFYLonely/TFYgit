@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="pojo.Role">
+    <id column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+    <result column="DESC" jdbcType="VARCHAR" property="desc" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+    <result column="ROLE_GRADE" jdbcType="VARCHAR" property="roleGrade" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    role.ROLE_ID, role.ROLE_NAME, role.DESC, role.STATUS roleStatus, role.UPDATE_TIME updateTime, role.UPDATE_BY roleUpdateBy,role.ROLE_GRADE
+  </sql>
+
+  <select id="findByRoleName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ROLE role
+    where 1=1
+    and role.ROLE_NAME = #{roleName, jdbcType=VARCHAR}
+  </select>
+    
+  
+</mapper>
