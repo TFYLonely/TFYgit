@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dlxf.cn.springbootmybatis.mapper.TmUserRoleRelationMapper">
+  <resultMap id="BaseResultMap" type="com.company.dlxf.cn.springbootmybatis.model.TmUserRoleRelationKey">
+    <id column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <id column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserRoleRelationKey">
+    delete from tm_user_role_relation
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserRoleRelationKey">
+    insert into tm_user_role_relation (USER_ID, ROLE_ID)
+    values (#{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserRoleRelationKey">
+    insert into tm_user_role_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dlxf.cn.springbootmybatis.mapper.TmUserLoginRecordInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.dlxf.cn.springbootmybatis.model.TmUserLoginRecordInfo">
+    <id column="RECORD_ID" jdbcType="VARCHAR" property="recordId" />
+    <result column="CURRENT_ID" jdbcType="VARCHAR" property="currentId" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="LOGIN_TIMES" jdbcType="VARCHAR" property="loginTimes" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RECORD_ID, CURRENT_ID, USER_ID, LOGIN_TIMES, START_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_user_login_record_info
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tm_user_login_record_info
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserLoginRecordInfo">
+    insert into tm_user_login_record_info (RECORD_ID, CURRENT_ID, USER_ID, 
+      LOGIN_TIMES, START_TIME)
+    values (#{recordId,jdbcType=VARCHAR}, #{currentId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{loginTimes,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserLoginRecordInfo">
+    insert into tm_user_login_record_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        RECORD_ID,
+      </if>
+      <if test="currentId != null">
+        CURRENT_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="loginTimes != null">
+        LOGIN_TIMES,
+      </if>
+      <if test="startTime != null">
+        START_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="currentId != null">
+        #{currentId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTimes != null">
+        #{loginTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserLoginRecordInfo">
+    update tm_user_login_record_info
+    <set>
+      <if test="currentId != null">
+        CURRENT_ID = #{currentId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTimes != null">
+        LOGIN_TIMES = #{loginTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserLoginRecordInfo">
+    update tm_user_login_record_info
+    set CURRENT_ID = #{currentId,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      LOGIN_TIMES = #{loginTimes,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP}
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+</mapper>

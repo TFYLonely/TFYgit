@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dlxf.cn.springbootmybatis.mapper.TmSysParameterInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.dlxf.cn.springbootmybatis.model.TmSysParameterInfo">
+    <id column="PARAMETER_ID" jdbcType="VARCHAR" property="parameterId" />
+    <result column="PARAMETER_NAME" jdbcType="VARCHAR" property="parameterName" />
+    <result column="PARAMETER_VALUE" jdbcType="VARCHAR" property="parameterValue" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PARAMETER_ID, PARAMETER_NAME, PARAMETER_VALUE, DESCRIPTION, TYPE, STATUS, UPDATE_TIME, 
+    UPDATE_BY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_sys_parameter_info
+    where PARAMETER_ID = #{parameterId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tm_sys_parameter_info
+    where PARAMETER_ID = #{parameterId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmSysParameterInfo">
+    insert into tm_sys_parameter_info (PARAMETER_ID, PARAMETER_NAME, PARAMETER_VALUE, 
+      DESCRIPTION, TYPE, STATUS, 
+      UPDATE_TIME, UPDATE_BY)
+    values (#{parameterId,jdbcType=VARCHAR}, #{parameterName,jdbcType=VARCHAR}, #{parameterValue,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmSysParameterInfo">
+    insert into tm_sys_parameter_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="parameterId != null">
+        PARAMETER_ID,
+      </if>
+      <if test="parameterName != null">
+        PARAMETER_NAME,
+      </if>
+      <if test="parameterValue != null">
+        PARAMETER_VALUE,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="parameterId != null">
+        #{parameterId,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterName != null">
+        #{parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterValue != null">
+        #{parameterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmSysParameterInfo">
+    update tm_sys_parameter_info
+    <set>
+      <if test="parameterName != null">
+        PARAMETER_NAME = #{parameterName,jdbcType=VARCHAR},
+      </if>
+      <if test="parameterValue != null">
+        PARAMETER_VALUE = #{parameterValue,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PARAMETER_ID = #{parameterId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmSysParameterInfo">
+    update tm_sys_parameter_info
+    set PARAMETER_NAME = #{parameterName,jdbcType=VARCHAR},
+      PARAMETER_VALUE = #{parameterValue,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where PARAMETER_ID = #{parameterId,jdbcType=VARCHAR}
+  </update>
+</mapper>

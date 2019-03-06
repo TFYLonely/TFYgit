@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dlxf.cn.springbootmybatis.mapper.TmLogInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.dlxf.cn.springbootmybatis.model.TmLogInfo">
+    <id column="RECORD_ID" jdbcType="VARCHAR" property="recordId" />
+    <result column="TRANS_ID" jdbcType="VARCHAR" property="transId" />
+    <result column="OPERATOR_ID" jdbcType="VARCHAR" property="operatorId" />
+    <result column="LOG_DATETIME" jdbcType="TIMESTAMP" property="logDatetime" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="PARK_NUM" jdbcType="VARCHAR" property="parkNum" />
+    <result column="PARK_ID" jdbcType="VARCHAR" property="parkId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.company.dlxf.cn.springbootmybatis.model.TmLogInfoWithBLOBs">
+    <result column="LOG_REQUEST_INFO" jdbcType="LONGVARCHAR" property="logRequestInfo" />
+    <result column="LOG_RESPONSE_INFO" jdbcType="LONGVARCHAR" property="logResponseInfo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RECORD_ID, TRANS_ID, OPERATOR_ID, LOG_DATETIME, STATUS, PARK_NUM, PARK_ID
+  </sql>
+  <sql id="Blob_Column_List">
+    LOG_REQUEST_INFO, LOG_RESPONSE_INFO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tm_log_info
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tm_log_info
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmLogInfoWithBLOBs">
+    insert into tm_log_info (RECORD_ID, TRANS_ID, OPERATOR_ID, 
+      LOG_DATETIME, STATUS, PARK_NUM, 
+      PARK_ID, LOG_REQUEST_INFO, LOG_RESPONSE_INFO
+      )
+    values (#{recordId,jdbcType=VARCHAR}, #{transId,jdbcType=VARCHAR}, #{operatorId,jdbcType=VARCHAR}, 
+      #{logDatetime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{parkNum,jdbcType=VARCHAR}, 
+      #{parkId,jdbcType=VARCHAR}, #{logRequestInfo,jdbcType=LONGVARCHAR}, #{logResponseInfo,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmLogInfoWithBLOBs">
+    insert into tm_log_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        RECORD_ID,
+      </if>
+      <if test="transId != null">
+        TRANS_ID,
+      </if>
+      <if test="operatorId != null">
+        OPERATOR_ID,
+      </if>
+      <if test="logDatetime != null">
+        LOG_DATETIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="parkNum != null">
+        PARK_NUM,
+      </if>
+      <if test="parkId != null">
+        PARK_ID,
+      </if>
+      <if test="logRequestInfo != null">
+        LOG_REQUEST_INFO,
+      </if>
+      <if test="logResponseInfo != null">
+        LOG_RESPONSE_INFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="transId != null">
+        #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null">
+        #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="logDatetime != null">
+        #{logDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="parkNum != null">
+        #{parkNum,jdbcType=VARCHAR},
+      </if>
+      <if test="parkId != null">
+        #{parkId,jdbcType=VARCHAR},
+      </if>
+      <if test="logRequestInfo != null">
+        #{logRequestInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="logResponseInfo != null">
+        #{logResponseInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmLogInfoWithBLOBs">
+    update tm_log_info
+    <set>
+      <if test="transId != null">
+        TRANS_ID = #{transId,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null">
+        OPERATOR_ID = #{operatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="logDatetime != null">
+        LOG_DATETIME = #{logDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="parkNum != null">
+        PARK_NUM = #{parkNum,jdbcType=VARCHAR},
+      </if>
+      <if test="parkId != null">
+        PARK_ID = #{parkId,jdbcType=VARCHAR},
+      </if>
+      <if test="logRequestInfo != null">
+        LOG_REQUEST_INFO = #{logRequestInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="logResponseInfo != null">
+        LOG_RESPONSE_INFO = #{logResponseInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmLogInfoWithBLOBs">
+    update tm_log_info
+    set TRANS_ID = #{transId,jdbcType=VARCHAR},
+      OPERATOR_ID = #{operatorId,jdbcType=VARCHAR},
+      LOG_DATETIME = #{logDatetime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      PARK_NUM = #{parkNum,jdbcType=VARCHAR},
+      PARK_ID = #{parkId,jdbcType=VARCHAR},
+      LOG_REQUEST_INFO = #{logRequestInfo,jdbcType=LONGVARCHAR},
+      LOG_RESPONSE_INFO = #{logResponseInfo,jdbcType=LONGVARCHAR}
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmLogInfo">
+    update tm_log_info
+    set TRANS_ID = #{transId,jdbcType=VARCHAR},
+      OPERATOR_ID = #{operatorId,jdbcType=VARCHAR},
+      LOG_DATETIME = #{logDatetime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      PARK_NUM = #{parkNum,jdbcType=VARCHAR},
+      PARK_ID = #{parkId,jdbcType=VARCHAR}
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+</mapper>

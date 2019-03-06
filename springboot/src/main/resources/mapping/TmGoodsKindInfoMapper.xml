@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dlxf.cn.springbootmybatis.mapper.TmGoodsKindInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.dlxf.cn.springbootmybatis.model.TmGoodsKindInfo">
+    <id column="RECORD_ID" jdbcType="VARCHAR" property="recordId" />
+    <result column="KIND_NO" jdbcType="VARCHAR" property="kindNo" />
+    <result column="KIND_NAME" jdbcType="VARCHAR" property="kindName" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="KIND_DESC" jdbcType="VARCHAR" property="kindDesc" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RECORD_ID, KIND_NO, KIND_NAME, STATUS, KIND_DESC, UPDATE_TIME, UPDATE_BY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_goods_kind_info
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tm_goods_kind_info
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmGoodsKindInfo">
+    insert into tm_goods_kind_info (RECORD_ID, KIND_NO, KIND_NAME, 
+      STATUS, KIND_DESC, UPDATE_TIME, 
+      UPDATE_BY)
+    values (#{recordId,jdbcType=VARCHAR}, #{kindNo,jdbcType=VARCHAR}, #{kindName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{kindDesc,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmGoodsKindInfo">
+    insert into tm_goods_kind_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        RECORD_ID,
+      </if>
+      <if test="kindNo != null">
+        KIND_NO,
+      </if>
+      <if test="kindName != null">
+        KIND_NAME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="kindDesc != null">
+        KIND_DESC,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="kindNo != null">
+        #{kindNo,jdbcType=VARCHAR},
+      </if>
+      <if test="kindName != null">
+        #{kindName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="kindDesc != null">
+        #{kindDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmGoodsKindInfo">
+    update tm_goods_kind_info
+    <set>
+      <if test="kindNo != null">
+        KIND_NO = #{kindNo,jdbcType=VARCHAR},
+      </if>
+      <if test="kindName != null">
+        KIND_NAME = #{kindName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="kindDesc != null">
+        KIND_DESC = #{kindDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmGoodsKindInfo">
+    update tm_goods_kind_info
+    set KIND_NO = #{kindNo,jdbcType=VARCHAR},
+      KIND_NAME = #{kindName,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      KIND_DESC = #{kindDesc,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+</mapper>

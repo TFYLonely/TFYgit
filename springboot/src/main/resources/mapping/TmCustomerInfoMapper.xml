@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dlxf.cn.springbootmybatis.mapper.TmCustomerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.dlxf.cn.springbootmybatis.model.TmCustomerInfo">
+    <id column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId" />
+    <result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="MOBILE_NO" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="VISIT_TYPE" jdbcType="VARCHAR" property="visitType" />
+    <result column="RECOMMEND_PERSON" jdbcType="VARCHAR" property="recommendPerson" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CUSTOMER_ID, CUSTOMER_NAME, DESCRIPTION, MOBILE_NO, EMAIL, ADDRESS, VISIT_TYPE, RECOMMEND_PERSON, 
+    STATUS, UPDATE_TIME, UPDATE_BY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_customer_info
+    where CUSTOMER_ID = #{customerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tm_customer_info
+    where CUSTOMER_ID = #{customerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmCustomerInfo">
+    insert into tm_customer_info (CUSTOMER_ID, CUSTOMER_NAME, DESCRIPTION, 
+      MOBILE_NO, EMAIL, ADDRESS, 
+      VISIT_TYPE, RECOMMEND_PERSON, STATUS, 
+      UPDATE_TIME, UPDATE_BY)
+    values (#{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{mobileNo,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{visitType,jdbcType=VARCHAR}, #{recommendPerson,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmCustomerInfo">
+    insert into tm_customer_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="customerName != null">
+        CUSTOMER_NAME,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="mobileNo != null">
+        MOBILE_NO,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="visitType != null">
+        VISIT_TYPE,
+      </if>
+      <if test="recommendPerson != null">
+        RECOMMEND_PERSON,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null">
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null">
+        #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendPerson != null">
+        #{recommendPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmCustomerInfo">
+    update tm_customer_info
+    <set>
+      <if test="customerName != null">
+        CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null">
+        MOBILE_NO = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="visitType != null">
+        VISIT_TYPE = #{visitType,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendPerson != null">
+        RECOMMEND_PERSON = #{recommendPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CUSTOMER_ID = #{customerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmCustomerInfo">
+    update tm_customer_info
+    set CUSTOMER_NAME = #{customerName,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      MOBILE_NO = #{mobileNo,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      VISIT_TYPE = #{visitType,jdbcType=VARCHAR},
+      RECOMMEND_PERSON = #{recommendPerson,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where CUSTOMER_ID = #{customerId,jdbcType=VARCHAR}
+  </update>
+  <!--客户信息列表-->
+  <select id="findCustomerInfo" resultMap="BaseResultMap" parameterType="com.company.dlxf.cn.springbootmybatis.pojo.CustomerInfo" >
+      SELECT
+      <include refid="Base_Column_List" />
+      FROM tm_customer_info
+      WHERE 1=1
+    <if test="dateMin != ''">
+        AND UPDATE_TIME &gt;= #{dateMin,jdbcType=TIMESTAMP}
+    </if>
+    <if test="dateMax != ''">
+        AND UPDATE_TIME &lt;= #{dateMax,jdbcType=TIMESTAMP}
+    </if>
+    <if test="customerName != null">
+        AND CUSTOMER_NAME like concat('%',#{customerName,jdbcType=VARCHAR},'%')
+    </if>
+  </select>
+  <!--客户停用-->
+  <update id="memberStop" parameterType="java.lang.String">
+      UPDATE tm_customer_info
+      SET `STATUS` = "02"
+      WHERE CUSTOMER_ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <!--客户启用-->
+  <update id="memberStart">
+      UPDATE tm_customer_info
+      SET `STATUS` = "01"
+      WHERE CUSTOMER_ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

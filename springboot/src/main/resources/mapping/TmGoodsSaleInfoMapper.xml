@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dlxf.cn.springbootmybatis.mapper.TmGoodsSaleInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.dlxf.cn.springbootmybatis.model.TmGoodsSaleInfo">
+    <id column="RECORD_ID" jdbcType="VARCHAR" property="recordId" />
+    <result column="GOODS_ID" jdbcType="VARCHAR" property="goodsId" />
+    <result column="CUSTOMER_ID" jdbcType="VARCHAR" property="customerId" />
+    <result column="GOODS_NAME" jdbcType="VARCHAR" property="goodsName" />
+    <result column="GOODS_WEIGHT" jdbcType="INTEGER" property="goodsWeight" />
+    <result column="GOODS_REMAIN_WEIGHT" jdbcType="INTEGER" property="goodsRemainWeight" />
+    <result column="GOODS_PRICE" jdbcType="INTEGER" property="goodsPrice" />
+    <result column="GOODS_SALE_PRICE" jdbcType="INTEGER" property="goodsSalePrice" />
+    <result column="GOODS_PLACE" jdbcType="VARCHAR" property="goodsPlace" />
+    <result column="GOODS_DESCRIPTION" jdbcType="VARCHAR" property="goodsDescription" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="UPDATE_BY" jdbcType="VARCHAR" property="updateBy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RECORD_ID, GOODS_ID, CUSTOMER_ID, GOODS_NAME, GOODS_WEIGHT, GOODS_REMAIN_WEIGHT, 
+    GOODS_PRICE, GOODS_SALE_PRICE, GOODS_PLACE, GOODS_DESCRIPTION, START_TIME, STATUS, 
+    UPDATE_TIME, UPDATE_BY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_goods_sale_info
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tm_goods_sale_info
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmGoodsSaleInfo">
+    insert into tm_goods_sale_info (RECORD_ID, GOODS_ID, CUSTOMER_ID, 
+      GOODS_NAME, GOODS_WEIGHT, GOODS_REMAIN_WEIGHT, 
+      GOODS_PRICE, GOODS_SALE_PRICE, GOODS_PLACE, 
+      GOODS_DESCRIPTION, START_TIME, STATUS, 
+      UPDATE_TIME, UPDATE_BY)
+    values (#{recordId,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsWeight,jdbcType=INTEGER}, #{goodsRemainWeight,jdbcType=INTEGER}, 
+      #{goodsPrice,jdbcType=INTEGER}, #{goodsSalePrice,jdbcType=INTEGER}, #{goodsPlace,jdbcType=VARCHAR}, 
+      #{goodsDescription,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmGoodsSaleInfo">
+    insert into tm_goods_sale_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        RECORD_ID,
+      </if>
+      <if test="goodsId != null">
+        GOODS_ID,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME,
+      </if>
+      <if test="goodsWeight != null">
+        GOODS_WEIGHT,
+      </if>
+      <if test="goodsRemainWeight != null">
+        GOODS_REMAIN_WEIGHT,
+      </if>
+      <if test="goodsPrice != null">
+        GOODS_PRICE,
+      </if>
+      <if test="goodsSalePrice != null">
+        GOODS_SALE_PRICE,
+      </if>
+      <if test="goodsPlace != null">
+        GOODS_PLACE,
+      </if>
+      <if test="goodsDescription != null">
+        GOODS_DESCRIPTION,
+      </if>
+      <if test="startTime != null">
+        START_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsWeight != null">
+        #{goodsWeight,jdbcType=INTEGER},
+      </if>
+      <if test="goodsRemainWeight != null">
+        #{goodsRemainWeight,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null">
+        #{goodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSalePrice != null">
+        #{goodsSalePrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPlace != null">
+        #{goodsPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDescription != null">
+        #{goodsDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmGoodsSaleInfo">
+    update tm_goods_sale_info
+    <set>
+      <if test="goodsId != null">
+        GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsWeight != null">
+        GOODS_WEIGHT = #{goodsWeight,jdbcType=INTEGER},
+      </if>
+      <if test="goodsRemainWeight != null">
+        GOODS_REMAIN_WEIGHT = #{goodsRemainWeight,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPrice != null">
+        GOODS_PRICE = #{goodsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsSalePrice != null">
+        GOODS_SALE_PRICE = #{goodsSalePrice,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPlace != null">
+        GOODS_PLACE = #{goodsPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDescription != null">
+        GOODS_DESCRIPTION = #{goodsDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmGoodsSaleInfo">
+    update tm_goods_sale_info
+    set GOODS_ID = #{goodsId,jdbcType=VARCHAR},
+      CUSTOMER_ID = #{customerId,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      GOODS_WEIGHT = #{goodsWeight,jdbcType=INTEGER},
+      GOODS_REMAIN_WEIGHT = #{goodsRemainWeight,jdbcType=INTEGER},
+      GOODS_PRICE = #{goodsPrice,jdbcType=INTEGER},
+      GOODS_SALE_PRICE = #{goodsSalePrice,jdbcType=INTEGER},
+      GOODS_PLACE = #{goodsPlace,jdbcType=VARCHAR},
+      GOODS_DESCRIPTION = #{goodsDescription,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR}
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+</mapper>

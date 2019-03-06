@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dlxf.cn.springbootmybatis.mapper.TmUserLoginInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.dlxf.cn.springbootmybatis.model.TmUserLoginInfo">
+    <id column="RECORD_ID" jdbcType="VARCHAR" property="recordId" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
+    <result column="LOGIN_TIME" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="LOGIN_IP" jdbcType="VARCHAR" property="loginIp" />
+    <result column="LOGIN_TARGET" jdbcType="VARCHAR" property="loginTarget" />
+    <result column="LOGOUT_TIME" jdbcType="TIMESTAMP" property="logoutTime" />
+    <result column="LOGOUT_TYPE" jdbcType="CHAR" property="logoutType" />
+    <result column="LOGIN_STATUS" jdbcType="CHAR" property="loginStatus" />
+    <result column="LOGIN_INDEX" jdbcType="CHAR" property="loginIndex" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RECORD_ID, USER_ID, LOGIN_TIME, LOGIN_IP, LOGIN_TARGET, LOGOUT_TIME, LOGOUT_TYPE, 
+    LOGIN_STATUS, LOGIN_INDEX
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_user_login_info
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tm_user_login_info
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserLoginInfo">
+    insert into tm_user_login_info (RECORD_ID, USER_ID, LOGIN_TIME, 
+      LOGIN_IP, LOGIN_TARGET, LOGOUT_TIME, 
+      LOGOUT_TYPE, LOGIN_STATUS, LOGIN_INDEX
+      )
+    values (#{recordId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{loginIp,jdbcType=VARCHAR}, #{loginTarget,jdbcType=VARCHAR}, #{logoutTime,jdbcType=TIMESTAMP}, 
+      #{logoutType,jdbcType=CHAR}, #{loginStatus,jdbcType=CHAR}, #{loginIndex,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserLoginInfo">
+    insert into tm_user_login_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        RECORD_ID,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME,
+      </if>
+      <if test="loginIp != null">
+        LOGIN_IP,
+      </if>
+      <if test="loginTarget != null">
+        LOGIN_TARGET,
+      </if>
+      <if test="logoutTime != null">
+        LOGOUT_TIME,
+      </if>
+      <if test="logoutType != null">
+        LOGOUT_TYPE,
+      </if>
+      <if test="loginStatus != null">
+        LOGIN_STATUS,
+      </if>
+      <if test="loginIndex != null">
+        LOGIN_INDEX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTarget != null">
+        #{loginTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="logoutTime != null">
+        #{logoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutType != null">
+        #{logoutType,jdbcType=CHAR},
+      </if>
+      <if test="loginStatus != null">
+        #{loginStatus,jdbcType=CHAR},
+      </if>
+      <if test="loginIndex != null">
+        #{loginIndex,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserLoginInfo">
+    update tm_user_login_info
+    <set>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null">
+        LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTarget != null">
+        LOGIN_TARGET = #{loginTarget,jdbcType=VARCHAR},
+      </if>
+      <if test="logoutTime != null">
+        LOGOUT_TIME = #{logoutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutType != null">
+        LOGOUT_TYPE = #{logoutType,jdbcType=CHAR},
+      </if>
+      <if test="loginStatus != null">
+        LOGIN_STATUS = #{loginStatus,jdbcType=CHAR},
+      </if>
+      <if test="loginIndex != null">
+        LOGIN_INDEX = #{loginIndex,jdbcType=CHAR},
+      </if>
+    </set>
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmUserLoginInfo">
+    update tm_user_login_info
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      LOGIN_TIME = #{loginTime,jdbcType=TIMESTAMP},
+      LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+      LOGIN_TARGET = #{loginTarget,jdbcType=VARCHAR},
+      LOGOUT_TIME = #{logoutTime,jdbcType=TIMESTAMP},
+      LOGOUT_TYPE = #{logoutType,jdbcType=CHAR},
+      LOGIN_STATUS = #{loginStatus,jdbcType=CHAR},
+      LOGIN_INDEX = #{loginIndex,jdbcType=CHAR}
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+</mapper>

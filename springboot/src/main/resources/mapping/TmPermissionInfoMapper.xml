@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.dlxf.cn.springbootmybatis.mapper.TmPermissionInfoMapper">
+  <resultMap id="BaseResultMap" type="com.company.dlxf.cn.springbootmybatis.model.TmPermissionInfo">
+    <id column="PERMISSION_ID" jdbcType="VARCHAR" property="permissionId" />
+    <result column="PERMISSION_NAME" jdbcType="VARCHAR" property="permissionName" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="PARENT_PERMISSION_ID" jdbcType="VARCHAR" property="parentPermissionId" />
+    <result column="LEVEL" jdbcType="VARCHAR" property="level" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="ADMIN_FLAG" jdbcType="VARCHAR" property="adminFlag" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PERMISSION_ID, PERMISSION_NAME, DESCRIPTION, PARENT_PERMISSION_ID, LEVEL, STATUS, 
+    ADMIN_FLAG, PATH
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tm_permission_info
+    where PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tm_permission_info
+    where PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmPermissionInfo">
+    insert into tm_permission_info (PERMISSION_ID, PERMISSION_NAME, DESCRIPTION, 
+      PARENT_PERMISSION_ID, LEVEL, STATUS, 
+      ADMIN_FLAG, PATH)
+    values (#{permissionId,jdbcType=VARCHAR}, #{permissionName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{parentPermissionId,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{adminFlag,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmPermissionInfo">
+    insert into tm_permission_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        PERMISSION_ID,
+      </if>
+      <if test="permissionName != null">
+        PERMISSION_NAME,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="parentPermissionId != null">
+        PARENT_PERMISSION_ID,
+      </if>
+      <if test="level != null">
+        LEVEL,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="adminFlag != null">
+        ADMIN_FLAG,
+      </if>
+      <if test="path != null">
+        PATH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionName != null">
+        #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPermissionId != null">
+        #{parentPermissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="adminFlag != null">
+        #{adminFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmPermissionInfo">
+    update tm_permission_info
+    <set>
+      <if test="permissionName != null">
+        PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="parentPermissionId != null">
+        PARENT_PERMISSION_ID = #{parentPermissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        LEVEL = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="adminFlag != null">
+        ADMIN_FLAG = #{adminFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.company.dlxf.cn.springbootmybatis.model.TmPermissionInfo">
+    update tm_permission_info
+    set PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      PARENT_PERMISSION_ID = #{parentPermissionId,jdbcType=VARCHAR},
+      LEVEL = #{level,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      ADMIN_FLAG = #{adminFlag,jdbcType=VARCHAR},
+      PATH = #{path,jdbcType=VARCHAR}
+    where PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
+  </update>
+</mapper>
